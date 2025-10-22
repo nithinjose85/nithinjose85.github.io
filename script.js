@@ -100,7 +100,7 @@ window.addEventListener('load', () => {
 
     if (typewriterTextElement) {
 
-        const fullText = "Cybersecurity consultant with proficient experience and a solid understanding of cybersecurity and networking. Specialized in proactive maintenance (ELK/Wazuh) and monitoring (Devo, Devo SOAR, ELK/Wazuh, Splunk) SIEM. Possesses deep knowledge in identifying and analyzing suspicious events. Versatile in managing sensitive materials and skilled in utilizing various tools for log and packet analysis. Successfully completed the Dante Pro Lab in Hack The Box, enhancing skills in vulnerability assessment and exploitation techniques.";
+        const fullText = "A results-driven Cybersecurity Consultant specializing in proactive SIEM management and defense fortification, I leverage deep proficiency with platforms like Devo (including Devo SOAR), ELK/Wazuh, and Splunk to establish robust situational awareness and monitoring. I possess a solid understanding of security principles and networking fundamentals, specializing in the identification, analysis, and timely remediation of suspicious events through expert log and packet analysis. My skills are verified by the successful completion of the Hack The Box Dante Pro Lab, demonstrating advanced, hands-on capabilities in vulnerability assessment and exploitation techniques, complemented by versatile experience in managing and securing sensitive materials.";
 
         let i = 0;
 
@@ -166,3 +166,4 @@ window.addEventListener('load', () => {
 
 
 });
+
