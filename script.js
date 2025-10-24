@@ -8,13 +8,9 @@ const staggerItems = document.querySelectorAll('.stagger-item');
 const bodyElement = document.body; 
 
 
-// 1. Mobile menu toggle (REMOVED: The functionality is disabled)
+// 1. Mobile menu toggle (REMOVED: No functionality defined in this version)
 if (menuToggle && navLinks) {
-    // If you ever want to re-enable the mobile menu, you'll need the toggle lines here:
-    // menuToggle.addEventListener('click', () => {
-    //     navLinks.classList.toggle('active');
-    //     menuToggle.classList.toggle('open'); 
-    // });
+    // Mobile menu toggle logic is absent in this reverted version.
 }
 
 
@@ -27,11 +23,11 @@ function handleParallax() {
     }
 }
 
-// Re-enables the basic scroll event listener for parallax
+// Basic scroll event listener for parallax
 window.addEventListener('scroll', handleParallax);
 
 
-// 3. Page Load Animation Handler (Kept as is - no changes needed for this functionality)
+// 3. Page Load Animation Handler 
 window.addEventListener('load', () => {
     // A. Animate Header Title Stagger
     if (headerStaggerItems.length > 0) {
