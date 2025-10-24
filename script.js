@@ -8,46 +8,30 @@ const staggerItems = document.querySelectorAll('.stagger-item');
 const bodyElement = document.body; 
 
 
-// 1. Mobile menu toggle (FIXED)
+// 1. Mobile menu toggle (REMOVED: The functionality is disabled)
 if (menuToggle && navLinks) {
-    menuToggle.addEventListener('click', () => {
-        navLinks.classList.toggle('active');
-        menuToggle.classList.toggle('open'); 
-    });
+    // If you ever want to re-enable the mobile menu, you'll need the toggle lines here:
+    // menuToggle.addEventListener('click', () => {
+    //     navLinks.classList.toggle('active');
+    //     menuToggle.classList.toggle('open'); 
+    // });
 }
 
 
-// 2. Parallax Scroll Effect (OPTIMIZED)
-let isTicking = false;
-
-function updateParallax() {
+// 2. Parallax Scroll Effect (REVERTED TO BASIC SCROLL LISTENER)
+function handleParallax() {
     if (mainContent) {
         const scrollPosition = window.scrollY;
         const movementFactor = 0.1;
-        // Using transform is highly performant
         mainContent.style.transform = `translateY(${scrollPosition * movementFactor}px)`;
     }
-    isTicking = false;
 }
 
-function handleParallax() {
-    // Only request a frame if one isn't already scheduled
-    if (!isTicking) {
-        window.requestAnimationFrame(updateParallax);
-        isTicking = true;
-    }
-}
-
-// Check if body background is fixed (desktop), if not, don't run parallax on mobile
-if (window.getComputedStyle(bodyElement).getPropertyValue('background-attachment') === 'fixed') {
-    window.addEventListener('scroll', handleParallax);
-} else {
-    // Optional: Log a message if parallax is disabled on mobile
-    console.log("Parallax disabled for performance on mobile/small screen.");
-}
+// Re-enables the basic scroll event listener for parallax
+window.addEventListener('scroll', handleParallax);
 
 
-// 3. Page Load Animation Handler
+// 3. Page Load Animation Handler (Kept as is - no changes needed for this functionality)
 window.addEventListener('load', () => {
     // A. Animate Header Title Stagger
     if (headerStaggerItems.length > 0) {
