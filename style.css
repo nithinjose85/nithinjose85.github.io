@@ -114,12 +114,14 @@ nav a.active {
     height: 20px;
     width: 25px;
     cursor: pointer;
+    /* NEW: Ensure the hamburger icon is above the menu dropdown */
+    z-index: 1002; 
 }
 
 .menu-toggle span {
     height: 3px;
     width: 100%;
-    background: var(--text-color); /* The lines need a color! */
+    background: var(--text-color); 
     margin: 2px 0;
     border-radius: 3px;
     transition: 0.3s;
@@ -227,9 +229,8 @@ main p a:hover, .skills-list dd a:hover, .stagger-item a:not(.cta-button):hover 
 }
 
 
-/* ========== STAGGERED ANIMATION DEFINITIONS ========== */
+/* ========== STAGGERED ANIMATION DEFINITIONS (No changes needed) ========== */
 
-/* 1. Default/Contact Page Animation: Slide-in X */
 .stagger-item {
     opacity: 0;
     transform: translateX(10px);
@@ -243,7 +244,6 @@ main p a:hover, .skills-list dd a:hover, .stagger-item a:not(.cta-button):hover 
     transform: translateX(0);
 }
 
-/* 1b. SKILLS PAGE ANIMATION: Subtle Fade-Up (TARGET: #skills-page-new) */
 #skills-page-new .stagger-item {
     opacity: 0;
     transform: translateY(15px); 
@@ -254,8 +254,6 @@ main p a:hover, .skills-list dd a:hover, .stagger-item a:not(.cta-button):hover 
     transform: translateY(0);
 }
 
-
-/* 2. PROJECTS PAGE ANIMATION: Scale-Up Pop-in */
 #projects-page .stagger-item {
     opacity: 0;
     transform: scale(0.8);
@@ -266,7 +264,6 @@ main p a:hover, .skills-list dd a:hover, .stagger-item a:not(.cta-button):hover 
     transform: scale(1);
 }
 
-/* 3. CERTIFICATIONS PAGE ANIMATION: Top-Down Slide & Rotate */
 #certs-page .stagger-item {
     opacity: 0;
     transform: translateY(-50px) rotateX(-90deg);
@@ -310,7 +307,7 @@ main p a:hover, .skills-list dd a:hover, .stagger-item a:not(.cta-button):hover 
 }
 
 /* Colon alignment for desktop views */
-@media (min-width: 768px) {
+@media (min-width: 769px) {
     .skills-list dt {
         padding-right: 25px; 
         position: relative; 
@@ -332,8 +329,8 @@ footer {
     padding: 0.7rem; 
     background: var(--darker-bg); 
     font-size: 0.85rem; 
-    z-index: 50; /* Ensure footer is above particles */
-    position: relative; /* Ensure z-index is respected */
+    z-index: 50; 
+    position: relative; 
 }
 
 footer a {
@@ -341,12 +338,11 @@ footer a {
     text-decoration: none;
 }
 
-/* ========== Responsive (Mobile Styles) ========== */
+/* ========== Responsive (Mobile Styles) - CRUCIAL FIXES HERE ========== */
 @media (max-width: 768px) {
     /* Mobile Menu Display */
     .menu-toggle {
         display: flex; 
-        z-index: 101;
     }
     
     nav ul {
@@ -355,28 +351,32 @@ footer a {
         background: rgba(0, 0, 0, 0.95);
         position: absolute;
         top: 60px;
-        right: 20px;
-        width: 200px;
+        right: 10px; /* Reduced distance from right edge */
+        width: 180px;
         padding: 1rem;
-        border-radius: 10px;
+        border-radius: 8px;
         box-shadow: 0 4px 15px rgba(0, 189, 212, 0.4);
-        /* NEW: Ensure mobile dropdown is above everything */
-        z-index: 999; 
+        z-index: 1001; /* Ensure it's above everything, but below the toggle */
+        transition: transform 0.3s ease-out; /* Smooth dropdown */
+        transform: translateY(-10px);
+    }
+    
+    /* Active menu state */
+    nav ul.active {
+        display: flex;
+        transform: translateY(0);
     }
 
     nav ul li {
         margin: 0.5rem 0;
+        text-align: center;
     }
 
     nav a {
         display: block; 
     }
-
-    nav ul.active {
-        display: flex;
-    }
     
-    /* NEW: General mobile content fixes */
+    /* General mobile content fixes */
     header h1 {
         font-size: 1.2rem;
     }
@@ -386,16 +386,16 @@ footer a {
     }
 
     .content-box {
-        padding: 1.5rem 1rem; /* Better padding for mobile */
-        max-width: 95%; /* Use more available width */
+        padding: 1.5rem 1rem; 
+        max-width: 95%; 
     }
     
-    /* NEW: Optional performance improvement on mobile */
+    /* Optional performance improvement on mobile */
     body {
         background-attachment: scroll; 
     }
     
-    /* NEW: Skills list mobile layout adjustment */
+    /* SKILLS LIST FIXES: Stack items and restore colons */
     .skills-list {
         grid-template-columns: 1fr; /* Stack dt/dd vertically */
         text-align: center;
@@ -406,10 +406,20 @@ footer a {
     .skills-list dt {
         text-align: center;
         margin-top: 10px;
+        padding-right: 0; /* Clear desktop padding */
     }
-
+    
+    /* FIX: Ensure colon is shown on mobile, placed inline after the text */
     .skills-list dt::after {
-        content: none; /* Remove the colon */
+        content: ":"; 
+        position: static; 
+        font-weight: 700;
+        color: var(--accent-color);
+        margin-left: 5px; 
     }
-
+    
+    .skills-list dd {
+        text-align: center;
+        padding-bottom: 5px; /* Add slight separation */
+    }
 }
