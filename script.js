@@ -38,10 +38,16 @@ function handleParallax() {
     }
 }
 
-window.addEventListener('scroll', handleParallax);
+// Check if body background is fixed (desktop), if not, don't run parallax on mobile
+if (window.getComputedStyle(bodyElement).getPropertyValue('background-attachment') === 'fixed') {
+    window.addEventListener('scroll', handleParallax);
+} else {
+    // Optional: Log a message if parallax is disabled on mobile
+    console.log("Parallax disabled for performance on mobile/small screen.");
+}
 
 
-// 3. Page Load Animation Handler (Applies unique animations based on body ID)
+// 3. Page Load Animation Handler
 window.addEventListener('load', () => {
     // A. Animate Header Title Stagger
     if (headerStaggerItems.length > 0) {
