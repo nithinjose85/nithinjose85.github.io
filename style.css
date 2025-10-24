@@ -106,7 +106,7 @@ nav a.active {
     border-bottom: 2px solid var(--accent-color);
 }
 
-/* Hamburger Menu Toggle - Hides the toggle completely on desktop */
+/* Hamburger Menu Toggle - Hides the toggle completely on desktop/non-mobile */
 .menu-toggle {
     display: none; 
     flex-direction: column;
@@ -263,7 +263,7 @@ main p a:hover, .skills-list dd a:hover, .stagger-item a:not(.cta-button):hover 
 }
 
 
-/* ========== Skills List Grid Alignment (Desktop Only) ========== */
+/* ========== Skills List Grid Alignment ========== */
 
 .skills-list {
     display: grid;
@@ -292,14 +292,15 @@ main p a:hover, .skills-list dd a:hover, .stagger-item a:not(.cta-button):hover 
     font-size: 1rem; 
 }
 
-/* Colon alignment for desktop views */
-@media (min-width: 769px) {
+/* Colon alignment for ALL views (Original logic) */
+@media (min-width: 0) { /* Target all screens */
     .skills-list dt {
         padding-right: 25px; 
         position: relative; 
     }
     
-    .skills-list dt::after {
+    /* FIX: Use :not([style]) to exclude the specialized training heading */
+    .skills-list dt:not([style])::after { 
         content: ":";
         font-weight: 700;
         color: var(--accent-color);
@@ -311,3 +312,53 @@ main p a:hover, .skills-list dd a:hover, .stagger-item a:not(.cta-button):hover 
 
 /* ========== Footer ========== */
 footer {
+    text-align: center;
+    padding: 0.7rem; 
+    background: var(--darker-bg); 
+    font-size: 0.85rem; 
+    z-index: 50; 
+    position: relative; 
+}
+
+footer a {
+    color: var(--accent-color);
+    text-decoration: none;
+}
+
+/* ========== Responsive (Mobile Styles) - REVERTED/NON-RESPONSIVE ========== */
+@media (max-width: 768px) {
+    /* Menu toggle remains display: none as requested */
+    .menu-toggle {
+        display: none; 
+    }
+    
+    /* Nav remains inline, potentially causing overflow or tiny text */
+    nav ul {
+        display: flex; 
+        flex-direction: row; 
+        position: static; 
+    }
+    
+    /* Skills list reverts to desktop grid layout */
+    .skills-list {
+        grid-template-columns: auto 1fr;
+        padding: 0 10px; 
+        gap: 8px 20px;
+    }
+    
+    .skills-list dt {
+        text-align: right;
+        margin-top: 0;
+        padding-right: 25px; 
+    }
+    
+    /* Content box reverts to desktop padding */
+    .content-box {
+        padding: 1.5rem 2.5rem;
+    }
+    
+    /* Revert background attachment to fixed (may cause mobile jitter) */
+    body {
+        background-attachment: fixed;
+    }
+}
