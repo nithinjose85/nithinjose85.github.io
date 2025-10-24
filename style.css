@@ -106,16 +106,15 @@ nav a.active {
     border-bottom: 2px solid var(--accent-color);
 }
 
-/* Hamburger Menu Toggle (Crucial for visibility) */
+/* Hamburger Menu Toggle - Hides the toggle completely on desktop */
 .menu-toggle {
-    display: none; /* Hidden by default on desktop */
+    display: none; 
     flex-direction: column;
     justify-content: space-around;
     height: 20px;
     width: 25px;
     cursor: pointer;
-    /* NEW: Ensure the hamburger icon is above the menu dropdown */
-    z-index: 1002; 
+    z-index: 101;
 }
 
 .menu-toggle span {
@@ -125,19 +124,6 @@ nav a.active {
     margin: 2px 0;
     border-radius: 3px;
     transition: 0.3s;
-}
-
-/* NEW: Hamburger Toggle Animation CSS */
-.menu-toggle.open span:nth-child(1) {
-    transform: rotate(-45deg) translate(-5px, 6px);
-}
-
-.menu-toggle.open span:nth-child(2) {
-    opacity: 0;
-}
-
-.menu-toggle.open span:nth-child(3) {
-    transform: rotate(45deg) translate(-5px, -6px);
 }
 
 
@@ -229,7 +215,7 @@ main p a:hover, .skills-list dd a:hover, .stagger-item a:not(.cta-button):hover 
 }
 
 
-/* ========== STAGGERED ANIMATION DEFINITIONS (No changes needed) ========== */
+/* ========== STAGGERED ANIMATION DEFINITIONS (Original) ========== */
 
 .stagger-item {
     opacity: 0;
@@ -277,7 +263,7 @@ main p a:hover, .skills-list dd a:hover, .stagger-item a:not(.cta-button):hover 
 }
 
 
-/* ========== Skills List Grid Alignment ========== */
+/* ========== Skills List Grid Alignment (Desktop Only) ========== */
 
 .skills-list {
     display: grid;
@@ -325,101 +311,3 @@ main p a:hover, .skills-list dd a:hover, .stagger-item a:not(.cta-button):hover 
 
 /* ========== Footer ========== */
 footer {
-    text-align: center;
-    padding: 0.7rem; 
-    background: var(--darker-bg); 
-    font-size: 0.85rem; 
-    z-index: 50; 
-    position: relative; 
-}
-
-footer a {
-    color: var(--accent-color);
-    text-decoration: none;
-}
-
-/* ========== Responsive (Mobile Styles) - CRUCIAL FIXES HERE ========== */
-@media (max-width: 768px) {
-    /* Mobile Menu Display */
-    .menu-toggle {
-        display: flex; 
-    }
-    
-    nav ul {
-        display: none;
-        flex-direction: column;
-        background: rgba(0, 0, 0, 0.95);
-        position: absolute;
-        top: 60px;
-        right: 10px; /* Reduced distance from right edge */
-        width: 180px;
-        padding: 1rem;
-        border-radius: 8px;
-        box-shadow: 0 4px 15px rgba(0, 189, 212, 0.4);
-        z-index: 1001; /* Ensure it's above everything, but below the toggle */
-        transition: transform 0.3s ease-out; /* Smooth dropdown */
-        transform: translateY(-10px);
-    }
-    
-    /* Active menu state */
-    nav ul.active {
-        display: flex;
-        transform: translateY(0);
-    }
-
-    nav ul li {
-        margin: 0.5rem 0;
-        text-align: center;
-    }
-
-    nav a {
-        display: block; 
-    }
-    
-    /* General mobile content fixes */
-    header h1 {
-        font-size: 1.2rem;
-    }
-    
-    main {
-        padding: 1.5rem 0.5rem;
-    }
-
-    .content-box {
-        padding: 1.5rem 1rem; 
-        max-width: 95%; 
-    }
-    
-    /* Optional performance improvement on mobile */
-    body {
-        background-attachment: scroll; 
-    }
-    
-    /* SKILLS LIST FIXES: Stack items and restore colons */
-    .skills-list {
-        grid-template-columns: 1fr; /* Stack dt/dd vertically */
-        text-align: center;
-        gap: 0;
-        padding: 0 5px;
-    }
-    
-    .skills-list dt {
-        text-align: center;
-        margin-top: 10px;
-        padding-right: 0; /* Clear desktop padding */
-    }
-    
-    /* FIX: Ensure colon is shown on mobile, placed inline after the text */
-    .skills-list dt::after {
-        content: ":"; 
-        position: static; 
-        font-weight: 700;
-        color: var(--accent-color);
-        margin-left: 5px; 
-    }
-    
-    .skills-list dd {
-        text-align: center;
-        padding-bottom: 5px; /* Add slight separation */
-    }
-}
