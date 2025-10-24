@@ -125,6 +125,20 @@ nav a.active {
     transition: 0.3s;
 }
 
+/* NEW: Hamburger Toggle Animation CSS */
+.menu-toggle.open span:nth-child(1) {
+    transform: rotate(-45deg) translate(-5px, 6px);
+}
+
+.menu-toggle.open span:nth-child(2) {
+    opacity: 0;
+}
+
+.menu-toggle.open span:nth-child(3) {
+    transform: rotate(45deg) translate(-5px, -6px);
+}
+
+
 /* ========== Main Content Layout ========== */
 main {
     flex: 1;
@@ -346,6 +360,8 @@ footer a {
         padding: 1rem;
         border-radius: 10px;
         box-shadow: 0 4px 15px rgba(0, 189, 212, 0.4);
+        /* NEW: Ensure mobile dropdown is above everything */
+        z-index: 999; 
     }
 
     nav ul li {
@@ -359,4 +375,41 @@ footer a {
     nav ul.active {
         display: flex;
     }
+    
+    /* NEW: General mobile content fixes */
+    header h1 {
+        font-size: 1.2rem;
+    }
+    
+    main {
+        padding: 1.5rem 0.5rem;
+    }
+
+    .content-box {
+        padding: 1.5rem 1rem; /* Better padding for mobile */
+        max-width: 95%; /* Use more available width */
+    }
+    
+    /* NEW: Optional performance improvement on mobile */
+    body {
+        background-attachment: scroll; 
+    }
+    
+    /* NEW: Skills list mobile layout adjustment */
+    .skills-list {
+        grid-template-columns: 1fr; /* Stack dt/dd vertically */
+        text-align: center;
+        gap: 0;
+        padding: 0 5px;
+    }
+    
+    .skills-list dt {
+        text-align: center;
+        margin-top: 10px;
+    }
+
+    .skills-list dt::after {
+        content: none; /* Remove the colon */
+    }
+
 }
