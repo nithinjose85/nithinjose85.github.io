@@ -1,0 +1,418 @@
+/* General Reset and Base Styles (Unchanged) */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --accent-color: #4dfffa; /* Electric Blue/Cyan */
+    --text-color: #ffffff;
+    --dark-bg: #0d0d0d;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    color: var(--text-color);
+    line-height: 1.6;
+    background-color: var(--dark-bg);
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* 🔥 NEW CSS: Prevents background scrolling when mobile menu is open (used by JS) */
+body.no-scroll {
+    overflow: hidden;
+}
+
+/* -------------------------------------- */
+/* Particle Background Layering (Unchanged) */
+/* -------------------------------------- */
+#particles-js {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0; 
+}
+
+/* -------------------------------------- */
+/* Header & Navigation (Unchanged in desktop view) */
+/* -------------------------------------- */
+header {
+    background: rgba(0, 0, 0, 0.4); 
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    z-index: 10; 
+    border-bottom: 1px solid rgba(77, 255, 250, 0.2);
+    min-height: 80px;
+}
+
+h1 {
+    font-size: 1.8em;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+}
+
+.accent-text {
+    color: var(--accent-color);
+}
+
+.header-stagger {
+    display: inline-block;
+    opacity: 0; 
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+}
+
+nav ul li {
+    margin-left: 25px;
+}
+
+nav ul li a {
+    color: var(--text-color);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s, border-bottom 0.3s;
+    padding-bottom: 2px;
+}
+
+nav ul li a:hover,
+nav ul li a.active {
+    color: var(--accent-color);
+    border-bottom: 2px solid var(--accent-color);
+}
+
+/* Mobile Menu Toggle (Hamburger) (Unchanged) */
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    z-index: 20;
+}
+
+.menu-toggle span {
+    height: 2px;
+    width: 25px;
+    background: var(--text-color);
+    margin-bottom: 4px;
+    border-radius: 5px;
+    transition: all 0.3s ease-in-out;
+}
+
+/* -------------------------------------- */
+/* Main Content Layout (Unchanged) */
+/* -------------------------------------- */
+main {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    position: relative;
+    z-index: 5; 
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out; 
+}
+
+.initial-hide {
+    opacity: 0; 
+    transform: translateY(20px); 
+}
+
+.content-box {
+    background: rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(8px);
+    padding: 40px 50px;
+    max-width: 800px;
+    width: 100%;
+    margin: 30px auto;
+    border-radius: 15px;
+    border: 1px solid rgba(77, 255, 250, 0.15);
+    text-align: center;
+    box-shadow: 0 0 20px rgba(77, 255, 250, 0.1);
+}
+
+h2 {
+    font-size: 2.2em;
+    margin-bottom: 25px;
+    color: var(--accent-color);
+    font-weight: 900;
+}
+
+/* Text styles (Unchanged) */
+p.large-text {
+    font-size: 1.1em;
+    margin-bottom: 20px;
+}
+
+p.small-text {
+    font-size: 0.9em;
+    text-align: justify;
+}
+
+/* Stagger animation element styles (Unchanged) */
+.stagger-item {
+    opacity: 0; 
+    transform: translateY(20px); 
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out; 
+}
+
+/* Define the final, visible state for the animation (Unchanged) */
+.stagger-item.animated {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+/* -------------------------------------- */
+/* List Styles for Skills (Grid) */
+/* -------------------------------------- */
+.skills-list {
+    list-style: none; 
+    text-align: left;
+    margin-top: 20px;
+    padding: 0;
+    grid-auto-rows: min-content;
+    
+    /* Fixed width for labels column for consistent alignment */
+    grid-template-columns: 280px 20px 1fr; 
+    display: grid;
+}
+
+.skills-list li {
+    display: contents; 
+    line-height: 1.8;
+}
+
+/* Header item fix for certifications page */
+.skills-list .skill-header-item {
+    display: contents; /* Ensure the LI behaves like a grid row */
+    margin: 15px 0;
+    line-height: 1;
+    border-bottom: none !important;
+}
+
+/* Style the header text container to span all three columns (Certifications page fix) */
+.skills-list .skill-header-text {
+    grid-column: 1 / 4; /* Span all three columns */
+    text-align: center;
+    color: var(--text-color);
+    font-weight: 700;
+    font-size: 1.1em;
+    margin: 1.5rem 0 0.5rem 0; /* Add top/bottom spacing */
+    line-height: 1.5;
+}
+
+
+/* Add a visual separation line to the entire row */
+.skills-list li .skill-label {
+    grid-column: 1 / 4; 
+    border-bottom: 1px dotted rgba(77, 255, 250, 0.1);
+    padding-bottom: 5px;
+    margin-bottom: 5px;
+    display: contents; 
+}
+
+/* Ensure the header itself doesn't have the border line */
+.skills-list .skill-header-item .skill-label {
+    border-bottom: none;
+}
+
+
+.skill-label {
+    font-weight: 700;
+    color: var(--accent-color);
+    font-size: 1em;
+    /* Right-align the label to the colon */
+    text-align: right; 
+    grid-column: 1; 
+    padding-right: 10px; /* Small gap to visually separate from colon */
+}
+
+.skill-separator {
+    font-weight: 700;
+    color: var(--accent-color);
+    /* Ensure the colon is centered in its 20px column */
+    text-align: center; 
+    grid-column: 2; 
+}
+
+.skill-value {
+    font-size: 0.9em;
+    opacity: 0.9;
+    /* Left-align the value away from the colon */
+    text-align: left;
+    grid-column: 3; 
+    padding-left: 10px; /* Small gap to visually separate from colon */
+}
+
+/* -------------------------------------- */
+/* Call to Action Button (Unchanged) */
+/* -------------------------------------- */
+.cta-button {
+    display: inline-block;
+    padding: 10px 25px;
+    margin-top: 30px;
+    background: var(--accent-color);
+    color: var(--dark-bg);
+    text-decoration: none;
+    font-weight: 700;
+    border-radius: 5px;
+    transition: background-color 0.3s, transform 0.2s;
+    box-shadow: 0 4px 10px rgba(77, 255, 250, 0.4);
+}
+
+.cta-button:hover {
+    background: #00e6e6;
+    transform: translateY(-2px);
+}
+
+/* -------------------------------------- */
+/* Footer (Unchanged) */
+/* -------------------------------------- */
+footer {
+    text-align: center;
+    padding: 15px 20px;
+    background: rgba(0, 0, 0, 0.4); 
+    font-size: 0.8em;
+    position: relative;
+    z-index: 10;
+}
+
+footer a {
+    color: var(--accent-color);
+    text-decoration: none;
+}
+
+/* -------------------------------------- */
+/* Mobile Responsiveness */
+/* -------------------------------------- */
+@media (max-width: 768px) {
+    header {
+        padding: 15px 20px;
+    }
+
+    h1 {
+        font-size: 1.6em;
+    }
+
+    .menu-toggle {
+        display: flex; 
+    }
+
+    nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.95);
+        display: flex; /* Kept display: flex for centering content */
+        align-items: center; 
+        justify-content: center;
+        z-index: 15;
+        
+        /* 🔥 MOBILE NAV FIX: Use transform/visibility for smooth opening */
+        visibility: hidden;
+        opacity: 0;
+        transform: translateX(100%); 
+        transition: all 0.4s ease-in-out; 
+    }
+
+    nav.open {
+        /* 🔥 MOBILE NAV FIX: Final state when active */
+        visibility: visible;
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+    nav ul {
+        flex-direction: column;
+        text-align: center;
+        width: 100%;
+    }
+
+    nav ul li {
+        margin: 20px 0;
+    }
+
+    nav ul li a {
+        font-size: 1.5em;
+    }
+
+    .content-box {
+        max-width: 95%;
+        padding: 30px 20px;
+    }
+
+    h2 {
+        font-size: 1.6em;
+    }
+    
+    /* 🔥 MOBILE SKILLS LIST FIXES */
+    .skills-list {
+        display: block; 
+        padding-left: 0;
+    }
+    
+    .skills-list li {
+        display: block; 
+        line-height: 1.4;
+        padding: 10px 0; /* Use padding for spacing */
+        border-bottom: 1px dotted rgba(77, 255, 250, 0.1); /* Apply border to all list items */
+    }
+
+    /* Remove border for the specialized header item */
+    .skills-list .skill-header-item {
+        padding: 10px 0 0 0; 
+        border-bottom: none;
+    }
+    
+    /* The border rule applied to the skill-label in desktop mode must be removed explicitly for mobile block items */
+    .skills-list li .skill-label {
+        border-bottom: none; 
+        display: inline;
+        grid-column: unset;
+    }
+
+    .skill-label {
+        text-align: left; 
+        padding-right: 0;
+        display: inline;
+    }
+    
+    .skill-label::after { /* Adds the colon next to the label */
+        content: ":";
+        margin-left: 5px;
+        margin-right: 5px;
+        color: var(--text-color);
+    }
+    
+    .skill-separator {
+        display: none;
+    }
+    
+    .skill-value {
+        text-align: left;
+        padding-left: 0;
+        display: inline; /* Keep on the same line as the label/colon */
+        opacity: 1; 
+    }
+
+    .cta-button {
+        width: 100%;
+        box-sizing: border-box;
+    }
+}
